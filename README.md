@@ -10,6 +10,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Open Paws](https://img.shields.io/badge/org-Open%20Paws-green)](https://github.com/Open-Paws)
 [![no-animal-violence](https://img.shields.io/badge/language-no--animal--violence-orange)](https://github.com/Open-Paws/no-animal-violence)
+[![desloppify score](https://img.shields.io/badge/desloppify-0.0%2F100-red)](scorecard.png)
 
 ## TL;DR
 
@@ -178,6 +179,10 @@ repos:
 ```
 
 ---
+
+## Code Quality
+
+<img src="scorecard.png" width="100%">
 
 ## Contributing
 
