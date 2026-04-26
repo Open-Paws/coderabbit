@@ -64,8 +64,6 @@ There is no staging environment for CodeRabbit config — test in a low-risk rep
 This config is the baseline for **all Open Paws repositories**. It is actively used by:
 
 - `platform` — Astro 5 + React 19 + Supabase frontend/backend
-- `gary` — autonomous agent (overrides with `knowledge_base.opt_out: true`)
-- `graze-cli` — agentic coding CLI
 - `desloppify` — code quality scanner
 - `project-compassionate-code` — org-scale PR submission tool
 - All other repos in the Open-Paws org that lack their own `.coderabbit.yaml`

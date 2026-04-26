@@ -154,9 +154,9 @@ knowledge_base:
 
 | Tier | Examples | Recommended override |
 |---|---|---|
-| Tier 1 (public, no sensitive data) | platform, desloppify, graze-cli | Use org config as-is |
+| Tier 1 (public, no sensitive data) | platform, desloppify | Use org config as-is |
 | Tier 2 (coalition or campaign data) | campaign tooling | `knowledge_base.opt_out: true` |
-| Tier 3 (investigation data, witness info, legal) | investigation ops, gary | `knowledge_base.opt_out: true` |
+| Tier 3 (investigation data, witness info, legal) | investigation ops | `knowledge_base.opt_out: true` |
 
 Tier assignments: `ecosystem/repos.md` in the [context repo](https://github.com/Open-Paws/context).
 
