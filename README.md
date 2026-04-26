@@ -30,8 +30,6 @@ This repo holds the org-wide [CodeRabbit](https://coderabbit.ai) configuration f
 | `.coderabbit.yaml` | Org-wide CodeRabbit defaults |
 | `semgrep-no-animal-violence.yaml` | Imports the full [no-animal-violence rule set](https://github.com/Open-Paws/semgrep-rules-no-animal-violence) for Semgrep |
 | `.pre-commit-config.yaml` | Pre-commit hook: runs no-animal-violence check locally |
-| `.github/workflows/auto-merge.yml` | Wave 0 auto-merge gate (deployable to target repos) |
-| `.github/workflows/no-animal-violence.yml` | CI check for speciesist language on every PR |
 
 ### Review behavior
 
@@ -103,25 +101,6 @@ Full pattern list: [Open-Paws/no-animal-violence](https://github.com/Open-Paws/n
 - Web search disabled
 - Jira, Linear, and MCP integrations disabled (MCP re-enable pending Gary MCP hub activation)
 
-### CI workflows
-
-**`auto-merge.yml` — Wave 0 auto-merge gate**
-
-Merges `level-0` PRs automatically when all five gates pass:
-
-1. PR is labeled `level-0`
-2. All required CI checks pass
-3. Desloppify score meets the repo threshold (Gary ≥80, platform ≥75, all others ≥70)
-4. No-animal-violence scan has zero errors
-5. A validation agent (`gary`, `validation-agent`, or `stuckvgn`) has left an APPROVE review
-
-Auto-merge is never triggered when changes touch `.env`, secret, credential, or key files, or when changes modify `.github/workflows/` files, or when the PR carries a `level-1`, `level-2`, `level-3`, or `needs-human-review` label.
-
-**`no-animal-violence.yml` — speciesist language CI check**
-
-Runs `Open-Paws/no-animal-violence-action@v1` on every PR. Errors block the PR; warnings do not.
-
----
 
 ## How to apply
 
@@ -162,52 +141,4 @@ Tier assignments: `ecosystem/repos.md` in the [context repo](https://github.com/
 
 ### Deploy CI workflows to a target repo
 
-Copy `.github/workflows/auto-merge.yml` and `.github/workflows/no-animal-violence.yml` from this repo into the target repo's `.github/workflows/` directory. No other changes are needed — the workflows reference org-level actions and secrets.
-
-### Add the pre-commit hook
-
-To run speciesist-language checks locally before pushing, add the hook to the target repo:
-
-```yaml
-# .pre-commit-config.yaml
-repos:
-  - repo: https://github.com/Open-Paws/no-animal-violence-pre-commit
-    rev: v1.0.0
-    hooks:
-      - id: no-animal-violence
-        files: \.(py|ts|js|md|yaml|yml)$
-```
-
----
-
-## Code Quality
-
-<img src="scorecard.png" width="100%">
-
-## Contributing
-
-Changes to `.coderabbit.yaml` affect every Open Paws repo that inherits this config — treat them as high-impact changes.
-
-1. Create a feature branch from `main`
-2. Edit `.coderabbit.yaml` and validate against the schema declared at the top of the file (`yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json`)
-3. Open a PR with a description of what changes and why — include the repos most affected
-4. After merge, CodeRabbit picks up the new config within minutes; no deployment step is required
-
-The canonical design document for this config lives in the [context repo](https://github.com/Open-Paws/context) at `open-paws-strategy/roadmap/coderabbit-central-config.yaml`.
-
----
-
-## License
-
-MIT — see [LICENSE](LICENSE) for details.
-
-## Acknowledgments
-
-- [CodeRabbit](https://coderabbit.ai) — AI code review platform
-- [Open-Paws/no-animal-violence](https://github.com/Open-Paws/no-animal-violence) — canonical speciesist language pattern list (65+ patterns)
-- [Open-Paws/semgrep-rules-no-animal-violence](https://github.com/Open-Paws/semgrep-rules-no-animal-violence) — Semgrep rule set
-- [Open-Paws/desloppify](https://github.com/Open-Paws/desloppify) — code quality scanner with advocacy language and security checks
-
----
-
-[Donate](https://openpaws.ai/donate) · [Discord](https://discord.gg/openpaws) · [openpaws.ai](https://openpaws.ai) · [Volunteer](https://openpaws.ai/volunteer)
+\n\n### CI workflows\n\n**`no-animal-violence.yml` — speciesist language CI check**\n\nRuns `Open-Paws/no-animal-violence-action@v1` on every PR. Errors block the PR; warnings do not.\n\nMerges are operator-driven via `/merge` in structured-coding-with-ai (no auto-merge).\n
